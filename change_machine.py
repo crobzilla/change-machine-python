@@ -20,16 +20,18 @@ def make_change(amount: int, denominations: List[int]) -> dict:
     denominations.sort(reverse=True)
     remaining_amount = amount
 
-    while remaining_amount > 0:
-        for denomination in denominations:
-            while remaining_amount - denomination >= 0:
-                remaining_amount = remaining_amount - denomination
+    for denomination in denominations:
+        while remaining_amount - denomination >= 0:
+            remaining_amount = remaining_amount - denomination
 
-                if denomination not in coin_numbers:
-                    coin_numbers[denomination] = 1
+            if denomination not in coin_numbers:
+                coin_numbers[denomination] = 1
 
-                else:
-                    coin_numbers[denomination] = coin_numbers[denomination] + 1
+            else:
+                coin_numbers[denomination] = coin_numbers[denomination] + 1
+
+        if remaining_amount == 0:
+            break
 
     return coin_numbers
 
